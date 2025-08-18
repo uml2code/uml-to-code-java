@@ -12,7 +12,6 @@ import lombok.Setter;
 public class UmlAttribute {
     private String name;
     private String type;
-    /// TODO: Visibility (ENUM)
     private Visibility visibility;
     private boolean isStatic;
     private String defaultValue;

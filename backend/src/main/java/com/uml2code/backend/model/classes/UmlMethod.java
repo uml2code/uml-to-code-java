@@ -14,7 +14,6 @@ import java.util.List;
 public class UmlMethod {
     private String name;
     private String returnType;
-    /// TODO: Visibility (ENUM)
     private Visibility visibility;
     private List<UmlParameter> parameters;
     private boolean isAbstract;

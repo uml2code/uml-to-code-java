@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class UmlClass {
     private String name;
-    ///TODO : ENUM Visibility
     private List<UmlAttribute> attributes;
     private List<UmlMethod> methods;
     private Visibility visibility;
