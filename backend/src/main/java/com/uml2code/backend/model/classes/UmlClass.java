@@ -13,9 +13,9 @@ import java.util.List;
 @NoArgsConstructor
 public class UmlClass {
     private String name;
-    ///TODO : Class UmlAttribute, Class UmlMethod, ENUM Visibility
-    private String List<UmlAttribute> attributes;
-    private String List<UmlMethod> methods;
+    ///TODO : ENUM Visibility
+    private List<UmlAttribute> attributes;
+    private List<UmlMethod> methods;
     private Visibility visibility;
     private boolean isAbstract;
     private UmlClass superClass;

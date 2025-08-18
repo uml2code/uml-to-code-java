@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,7 +14,7 @@ import lombok.Setter;
 public class UmlMethod {
     private String name;
     private String returnType;
-    /// TODO: class UmlParameter and Visibility (ENUM)
+    /// TODO: Visibility (ENUM)
     private Visibility visibility;
     private List<UmlParameter> parameters;
     private boolean isAbstract;
