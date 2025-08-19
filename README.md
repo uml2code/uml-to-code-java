@@ -1,4 +1,4 @@
-# UML → Code Framework
+# UML → Code
 
 An **open source** educational tool that transforms **UML diagrams** into **code skeletons**.  
 Initial support: **Java**, with planned extensions for **C#** and **Python**.
