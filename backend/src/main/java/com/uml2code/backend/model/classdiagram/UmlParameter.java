@@ -1,4 +1,4 @@
-package com.uml2code.backend.model.class;
+package com.uml2code.backend.model.classdiagram;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,10 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UmlAttribute {
+public class UmlParameter {
     private String name;
     private String type;
-    private Visibility visibility;
-    private boolean isStatic;
-    private String defaultValue;
 }

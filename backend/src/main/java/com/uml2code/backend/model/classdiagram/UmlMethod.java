@@ -1,4 +1,4 @@
-package com.uml2code.backend.model.class;
+package com.uml2code.backend.model.classdiagram;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
