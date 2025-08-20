@@ -7,4 +7,13 @@ public class PlantUmlClassParser implements UmlParser{
     public List<UmlClass> parse(File file) throws Exception {
         return null;
     }
+
+    /** TODO: implement Visibility parser
+     * + -> public
+     * - -> private
+     * # -> protected
+     */ 
+    private Visibility parseVisibility(char visibility){
+        return null;
+    }
 }
