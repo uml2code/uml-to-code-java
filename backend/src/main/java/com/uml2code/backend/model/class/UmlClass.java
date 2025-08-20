@@ -1,4 +1,4 @@
-package com.uml2code.backend.model.classes;
+package com.uml2code.backend.model.class;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,11 +11,12 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UmlMethod {
+public class UmlClass {
     private String name;
-    private String returnType;
+    private List<UmlAttribute> attributes;
+    private List<UmlMethod> methods;
     private Visibility visibility;
-    private List<UmlParameter> parameters;
     private boolean isAbstract;
-    private boolean isStatic;
+    private UmlClass superClass;
+    private List<String> interfaces;
 }

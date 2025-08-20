@@ -1,4 +1,4 @@
-package com.uml2code.backend.model.classes;
+package com.uml2code.backend.model.class;
 
 public enum Visibility {
     PUBLIC,
