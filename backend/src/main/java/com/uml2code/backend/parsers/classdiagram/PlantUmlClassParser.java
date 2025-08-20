@@ -12,7 +12,8 @@ public class PlantUmlClassParser implements UmlParser{
     @Override
     public List<UmlClass> parse(File file) throws Exception {
         List<String> lines = Files.readAllLines(file.toPath());
-        UmlClass umlClass = null;
+        List<UmlClass> classes;
+        UmlClass umlClass = new UmlClass();
 
         for(String line : lines){
            line = line.trim();
