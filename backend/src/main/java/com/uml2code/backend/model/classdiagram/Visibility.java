@@ -4,7 +4,7 @@ public enum Visibility {
     PUBLIC,
     PRIVATE,
     PROTECTED,
-    PACKAGE_PRIVATE
+    PACKAGE_PRIVATE;
 
     @Override
     public String toString(){
