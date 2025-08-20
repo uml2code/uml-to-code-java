@@ -9,16 +9,17 @@ import java.util.List;
 
 public class PlantUmlClassParser implements UmlParser{
     /// TODO: Implement a PlantUML parser for class diagrams
+    @Override
     public List<UmlClass> parse(File file) throws Exception {
         return null;
     }
 
-    /** TODO: implement Visibility parser
-     * + -> public
-     * - -> private
-     * # -> protected
-     */ 
     private Visibility parseVisibility(char visibility){
-        return null;
+        return switch (visibility){
+            case '+' -> Visibility.PUBLIC;
+            case '-' -> Visibility.PRIVATE;
+            case '#' -> Visibility.PROTECTED;
+            default -> Visibility.PACKAGE_PRIVATE;
+        };
     }
 }
