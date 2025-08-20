@@ -5,4 +5,9 @@ public enum Visibility {
     PRIVATE,
     PROTECTED,
     PACKAGE_PRIVATE
+
+    @Override
+    public String toString(){
+        return this.name().toLowerCase().replace('_', '-');
+    }
 }
