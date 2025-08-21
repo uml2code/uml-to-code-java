@@ -80,6 +80,22 @@ public class Helpers {
         return !line.contains("(") && line.split("\\s+").length >= 2;
     }
 
+    protected static String getAttributeType(String line){
+        if("+-#~".indexOf(line.charAt(0)) != -1){
+            line = line.substring(1).trim();
+        }
+        String[] parts = line.split("\\s+");
+        return parts[0];
+    }
+
+    protected static String getAttributeName(String line){
+        if("+-#~".indexOf(line.charAt(0)) != -1){
+            line = line.substring(1).trim();
+        }
+        String[] parts = line.split("\\s+");
+        return parts[1];
+    }
+
     protected static Visibility parseVisibility(char visibility){
         return switch (visibility){
             case '+' -> Visibility.PUBLIC;
