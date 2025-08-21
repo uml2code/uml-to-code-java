@@ -19,12 +19,48 @@ It is designed to be educational and lightweight, helping students and developer
 
 ## Project Structure
 ```
-uml2code-lib/
- ├── model/          # UML model classes (Class, Attribute, Method, etc.)
- ├── parsers/        # UML parsers (PlantUML, XMI...)
- ├── generators/     # Code generators (Java, C#, Python...)
- ├── examples/       # Example UML diagrams and generated code
- └── docs/           # Documentation and tutorials
+├──uml2code-lib/
+│ ├── src/
+│ │   └── main/
+│ │       ├── java/
+│ │       │   └── com/uml2code/
+│ │       │       ├── model/                 
+│ │       │       │   ├── classdiagram/  
+│ │       │       │   ├── sequence/        
+│ │       │       │   └── usecase/        
+│ │       │       │
+│ │       │       ├── parsers/              
+│ │       │       │   ├── UmlParser.java
+│ │       │       │   ├── classdiagram/
+│ │       │       │   │   ├── PlantUmlClassParser.java
+│ │       │       │   │   └── Helpers.java
+│ │       │       │   ├── sequence/   
+│ │       │       │   └── usecase/          
+│ │       │       │
+│ │       │       ├── generators/    
+│ │       │       │   ├── CodeGenerator.java
+│ │       │       │   ├── java/       
+│ │       │       │   │   └── JavaClassGenerator.java
+│ │       │       │   ├── csharp/      
+│ │       │       │   │   └── CSharpClassGenerator.java
+│ │       │       │   └── python/      
+│ │       │       │       └── PythonClassGenerator.java
+│ │       │       │
+│ │       │       └── utils/               
+│ │       │           └── FileUtils.java
+│ │       │
+│ │       └── resources/
+│ │           └── templates/      
+│ │
+│ └── src/test/
+│     └── java/
+│         └── com/uml2code/
+│             ├── parsers/  
+│             |   ├── classdiagram/
+│             |   ├── sequence/  
+│             └── generators/  
+├──examples/       # Example UML diagrams and generated code
+├──docs/           # Documentation and tutorials
 ```
 
 ---
