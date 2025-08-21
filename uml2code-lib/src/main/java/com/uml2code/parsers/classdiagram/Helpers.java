@@ -18,10 +18,12 @@ package com.uml2code.parsers.classdiagram;
 
 import com.uml2code.model.classdiagram.Visibility;
 
+import java.util.HashMap;
+
 public class Helpers {
 
     protected static boolean isClassDefinition(String line){
-        return line.startsWith("class ");
+        return line.contains("class ");
     }
 
     protected static String getClassName(String line){
@@ -50,6 +52,19 @@ public class Helpers {
             }        
         }
         return name;
+    }
+
+    public static HashMap<String, String> getParameters(String line){
+        HashMap<String, String> parameters = new HashMap<>();
+        int start = line.indexOf('(');
+        int end = line.indexOf(')');
+        String insideParentheses = line.substring(start + 1, end).trim();
+        String[] parts = insideParentheses.split(",");
+        for(String part : parts){
+            String[] p = part.trim().split("\\s+");
+            parameters.put(p[0], p[1]);
+        }
+        return parameters;
     }
 
     protected static String getReturnType(String line){
