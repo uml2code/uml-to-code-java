@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.uml2code.backend.parsers.classdiagram;
+package com.uml2code.parsers.classdiagram;
 
-import com.uml2code.backend.model.classdiagram.Visibility;
+import com.uml2code.model.classdiagram.Visibility;
 
 public class Helpers {
 
@@ -34,7 +34,7 @@ public class Helpers {
     }
 
     protected static boolean isClassEnd(String line){
-        return line.contains("}";
+        return line.contains("}");
     }
 
     protected static boolean isMethod(String line){
@@ -46,7 +46,7 @@ public class Helpers {
         String name = "";
         for(String part: parts){
             if(part.contains("(")){
-                name = part.substring(0, part.indexOf("(");
+                name = part.substring(0, part.indexOf("("));
             }        
         }
         return name;

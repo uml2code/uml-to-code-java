@@ -14,25 +14,22 @@
  * limitations under the License.
  */
 
-package com.uml2code.backend.model.classdiagram;
+package com.uml2code.model.classdiagram;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+public enum Visibility {
+    PUBLIC("public"),
+    PRIVATE("private"),
+    PROTECTED("protected"),
+    PACKAGE_PRIVATE("");
 
-import java.util.List;
+    private final String keyword;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class UmlClass {
-    private String name;
-    private List<UmlAttribute> attributes;
-    private List<UmlMethod> methods;
-    private Visibility visibility;
-    private boolean isAbstract;
-    private UmlClass superClass;
-    private List<String> interfaces;
+    Visibility(String keyword){
+        this.keyword = keyword;
+    }
+
+    @Override
+    public String toString(){
+        return keyword;
+    }
 }

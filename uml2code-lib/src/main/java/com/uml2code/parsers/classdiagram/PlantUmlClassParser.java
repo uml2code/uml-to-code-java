@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.uml2code.backend.parsers.classdiagram;
+package com.uml2code.parsers.classdiagram;
 
-import com.uml2code.backend.model.classdiagram.UmlClass;
-import com.uml2code.backend.parsers.UmlParser;
+import com.uml2code.model.classdiagram.UmlClass;
+import com.uml2code.parsers.UmlParser;
 
 import java.io.File;
 import java.nio.file.Files;
