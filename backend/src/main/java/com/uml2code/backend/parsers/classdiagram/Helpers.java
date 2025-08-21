@@ -4,7 +4,6 @@ import com.uml2code.backend.model.classdiagram.Visibility;
 
 public class Helpers {
 
-    // Class Helpers
     protected static boolean isClassDefinition(String line){
         return line.startsWith("class ");
     }
@@ -22,7 +21,6 @@ public class Helpers {
         return line.contains("}";
     }
 
-    // Method Helpers
     protected static boolean isMethod(String line){
         return line.contains("(");
     }
@@ -41,6 +39,10 @@ public class Helpers {
     protected static String getReturnType(String line){
         String[] parts = line.split(" ");
         return parts[parts.length - 1];
+    }
+
+    protected static boolean isStatic(String line){
+        return line.contains("static");
     }
 
     protected static Visibility parseVisibility(char visibility){
