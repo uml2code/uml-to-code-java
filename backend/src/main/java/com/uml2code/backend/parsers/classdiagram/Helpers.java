@@ -31,8 +31,8 @@ public class Helpers {
         String[] parts = line.split(" ");
         String name = "";
         for(String part: parts){
-            if(part.contains(":")){
-                name = part.substring(0, part.indexOf(":");
+            if(part.contains("(")){
+                name = part.substring(0, part.indexOf("(");
             }        
         }
         return name;
