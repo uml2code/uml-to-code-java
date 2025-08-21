@@ -54,7 +54,7 @@ public class Helpers {
         return name;
     }
 
-    public static HashMap<String, String> getParameters(String line){
+    protected static HashMap<String, String> getParameters(String line){
         HashMap<String, String> parameters = new HashMap<>();
         int start = line.indexOf('(');
         int end = line.indexOf(')');
@@ -74,6 +74,10 @@ public class Helpers {
 
     protected static boolean isStatic(String line){
         return line.contains("static");
+    }
+
+    protected static boolean isAttribute(String line){
+        return !line.contains("(") && line.split("\\s+").length >= 2;
     }
 
     protected static Visibility parseVisibility(char visibility){
