@@ -16,6 +16,7 @@
 
 package com.uml2code.parsers.classdiagram;
 
+import com.uml2code.model.classdiagram.UmlAttribute;
 import com.uml2code.model.classdiagram.UmlClass;
 import com.uml2code.model.classdiagram.UmlMethod;
 import com.uml2code.model.classdiagram.UmlParameter;
@@ -34,6 +35,7 @@ public class PlantUmlClassParser implements UmlParser{
         List<UmlClass> classes = new ArrayList<>();
         UmlClass umlClass = new UmlClass();
         List<UmlMethod> umlMethods = new ArrayList<>();
+        List<UmlAttribute> umlAttributes = new ArrayList<>();
         for(String line : lines){
             line = line.trim();
            if(Helpers.isClassDefinition(line)){
@@ -58,7 +60,24 @@ public class PlantUmlClassParser implements UmlParser{
                    umlParameters.add(umlParameter);
                });
                umlMethod.setParameters(umlParameters);
+               umlMethods.add(umlMethod);
            }
+
+            if(Helpers.isAttribute(line)){
+                UmlAttribute umlAttribute = new UmlAttribute();
+                umlAttribute.setStatic(Helpers.isStatic(line));
+                umlAttribute.setVisibility(Helpers.parseVisibility(line.charAt(0)));
+                umlAttribute.setType(Helpers.getAttributeType(line));
+                umlAttribute.setName(Helpers.getAttributeName(line));
+                umlAttribute.setDefaultValue(Helpers.getAttributeDefaultValue(line));
+                umlAttributes.add(umlAttribute);
+            }
+
+            if(Helpers.isClassEnd(line)){
+                umlClass.setMethods(umlMethods);
+                umlClass.setAttributes(umlAttributes);
+                classes.add(umlClass);
+            }
 
         }
         return classes;
