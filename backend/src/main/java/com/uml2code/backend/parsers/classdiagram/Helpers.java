@@ -17,6 +17,10 @@ public class Helpers {
         return line.contains("abstract");
     }
 
+    protected static boolean isMethod(String line){
+        return line.contains("(");
+    }
+
     protected static Visibility parseVisibility(char visibility){
         return switch (visibility){
             case '+' -> Visibility.PUBLIC;
