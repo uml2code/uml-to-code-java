@@ -77,6 +77,8 @@ public class PlantUmlClassParser implements UmlParser{
                 umlClass.setMethods(umlMethods);
                 umlClass.setAttributes(umlAttributes);
                 classes.add(umlClass);
+                umlMethods.clear();
+                umlAttributes.clear();
             }
 
         }
