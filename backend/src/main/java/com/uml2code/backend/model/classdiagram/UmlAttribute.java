@@ -14,15 +14,21 @@
  * limitations under the License.
  */
 
-package com.uml2code.backend;
+package com.uml2code.backend.model.classdiagram;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@SpringBootApplication
-public class BackendApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(BackendApplication.class, args);
-    }
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class UmlAttribute {
+    private String name;
+    private String type;
+    private Visibility visibility;
+    private boolean isStatic;
+    private String defaultValue;
 }
-    

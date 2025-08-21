@@ -14,15 +14,12 @@
  * limitations under the License.
  */
 
-package com.uml2code.backend;
+package com.uml2code.backend.parsers;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.uml2code.backend.model.classdiagram.UmlClass;
+import java.util.List;
+import java.io.File;
 
-@SpringBootApplication
-public class BackendApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(BackendApplication.class, args);
-    }
+public interface UmlParser{
+    List<UmlClass> parse(File file) throws Exception;
 }
-    

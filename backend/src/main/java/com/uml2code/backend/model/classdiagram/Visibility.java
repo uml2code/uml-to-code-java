@@ -14,15 +14,22 @@
  * limitations under the License.
  */
 
-package com.uml2code.backend;
+package com.uml2code.backend.model.classdiagram;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+public enum Visibility {
+    PUBLIC("public"),
+    PRIVATE("private"),
+    PROTECTED("protected"),
+    PACKAGE_PRIVATE("");
 
-@SpringBootApplication
-public class BackendApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(BackendApplication.class, args);
+    private final String keyword;
+
+    Visibility(String keyword){
+        this.keyword = keyword;
+    }
+
+    @Override
+    public String toString(){
+        return keyword;
     }
 }
-    

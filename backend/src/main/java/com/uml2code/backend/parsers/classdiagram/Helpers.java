@@ -1,0 +1,72 @@
+/*
+ * Copyright 2025 Walid Madad and uml2code Organization
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.uml2code.backend.parsers.classdiagram;
+
+import com.uml2code.backend.model.classdiagram.Visibility;
+
+public class Helpers {
+
+    protected static boolean isClassDefinition(String line){
+        return line.startsWith("class ");
+    }
+
+    protected static String getClassName(String line){
+        String[] parts = line.split(" ");
+        return parts[parts.length - 1];
+    }
+
+    protected static boolean isAbstract(String line){
+        return line.contains("abstract");
+    }
+
+    protected static boolean isClassEnd(String line){
+        return line.contains("}";
+    }
+
+    protected static boolean isMethod(String line){
+        return line.contains("(");
+    }
+
+    protected static String getMethodName(String line){
+        String[] parts = line.split(" ");
+        String name = "";
+        for(String part: parts){
+            if(part.contains("(")){
+                name = part.substring(0, part.indexOf("(");
+            }        
+        }
+        return name;
+    }
+
+    protected static String getReturnType(String line){
+        String[] parts = line.split(" ");
+        return parts[parts.length - 1];
+    }
+
+    protected static boolean isStatic(String line){
+        return line.contains("static");
+    }
+
+    protected static Visibility parseVisibility(char visibility){
+        return switch (visibility){
+            case '+' -> Visibility.PUBLIC;
+            case '-' -> Visibility.PRIVATE;
+            case '#' -> Visibility.PROTECTED;
+            default -> Visibility.PACKAGE_PRIVATE;
+        };
+    }
+}
