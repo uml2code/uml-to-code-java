@@ -38,6 +38,11 @@ public class Helpers {
         return name;
     }
 
+    protected static String getReturnType(String line){
+        String[] parts = line.split(" ");
+        return parts[parts.length - 1];
+    }
+
     protected static Visibility parseVisibility(char visibility){
         return switch (visibility){
             case '+' -> Visibility.PUBLIC;
