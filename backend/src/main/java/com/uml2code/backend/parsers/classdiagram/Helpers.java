@@ -21,6 +21,10 @@ public class Helpers {
         return line.contains("(");
     }
 
+    protected static boolean isClassEnd(String line){
+        return line.contains("}";
+    }
+
     protected static Visibility parseVisibility(char visibility){
         return switch (visibility){
             case '+' -> Visibility.PUBLIC;
