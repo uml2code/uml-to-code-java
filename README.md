@@ -1,44 +1,40 @@
-# UML → Code
+# UML2Code Library
 
-An **open source** educational tool that transforms **UML diagrams** into **code skeletons**.  
-Initial support: **Java**, with planned extensions for **C#** and **Python**.
-
----
-
-## Purpose
-Help students, teachers, and developers to:
-- Visualize their UML diagrams.
-- Quickly generate project skeletons in multiple languages.
-- Save time during project setup.
+**UML2Code** is an open-source library that transforms UML diagrams into code skeletons.  
+It is designed to be educational and lightweight, helping students and developers quickly move from design to implementation.
 
 ---
 
 ## Features
-- Import UML diagrams (PlantUML, XMI).
-- Code generation (Java, C#, Python).
-- Export generated projects as `.zip` files.
-- Simple web interface (React + Spring Boot API).
+- Parse **UML Class Diagrams** (PlantUML, XMI in progress).
+- Generate **code skeletons** in multiple languages:
+  - Java
+  - C#
+  - Python
+- Extensible architecture:
+  - Add your own parsers for other UML notations.
+  - Add new code generators for other languages.
 
 ---
 
 ## Project Structure
-- `backend/` → REST API built with **Spring Boot** (Java).
-- `frontend/` → **React.js** web application.
-- `generators/` → Code generation templates (Java, C#, Python).
-- `parsers/` → UML parsing modules (PlantUML, XMI, etc.).
-- `examples/` → Sample UML files and generated code.
-- `docs/` → Technical documentation and tutorials.
-
-
-### Generate Code
-1. Import your UML diagram (PlantUML or XMI).
-2. Select your target language (Java, C#, Python).
-3. Download the generated project as a `.zip` file.
+```
+uml2code-lib/
+ ├── model/          # UML model classes (Class, Attribute, Method, etc.)
+ ├── parsers/        # UML parsers (PlantUML, XMI...)
+ ├── generators/     # Code generators (Java, C#, Python...)
+ ├── examples/       # Example UML diagrams and generated code
+ └── docs/           # Documentation and tutorials
+```
 
 ---
 
 ## Contributing
-Contributions are welcome! See the [`docs/`](docs/) folder for guidelines and tutorials.
+Contributions are welcome!
+You can help by:
+- Adding new UML parsers
+- Adding new code generators
+- Improving documentation
 
 ---
 
