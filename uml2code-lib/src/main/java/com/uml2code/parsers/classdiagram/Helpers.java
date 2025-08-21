@@ -96,6 +96,14 @@ public class Helpers {
         return parts[1];
     }
 
+    protected static String getAttributeDefaultValue(String line){
+        if("+-#~".indexOf(line.charAt(0)) != -1){
+            line = line.substring(1).trim();
+        }
+        int equalsIndex = line.indexOf('=');
+        return line.substring(equalsIndex + 1).trim();
+    }
+
     protected static Visibility parseVisibility(char visibility){
         return switch (visibility){
             case '+' -> Visibility.PUBLIC;
