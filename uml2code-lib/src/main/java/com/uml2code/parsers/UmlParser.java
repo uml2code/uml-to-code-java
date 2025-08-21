@@ -14,21 +14,12 @@
  * limitations under the License.
  */
 
-package com.uml2code.backend.model.classdiagram;
+package com.uml2code.parsers;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.uml2code.model.classdiagram.UmlClass;
+import java.util.List;
+import java.io.File;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class UmlAttribute {
-    private String name;
-    private String type;
-    private Visibility visibility;
-    private boolean isStatic;
-    private String defaultValue;
+public interface UmlParser{
+    List<UmlClass> parse(File file) throws Exception;
 }

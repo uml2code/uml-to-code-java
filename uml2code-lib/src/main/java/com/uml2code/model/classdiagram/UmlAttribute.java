@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.uml2code.backend.model.classdiagram;
+package com.uml2code.model.classdiagram;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +25,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UmlParameter {
+public class UmlAttribute {
     private String name;
     private String type;
+    private Visibility visibility;
+    private boolean isStatic;
+    private String defaultValue;
 }

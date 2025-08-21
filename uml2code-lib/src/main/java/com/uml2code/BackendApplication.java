@@ -14,24 +14,15 @@
  * limitations under the License.
  */
 
-package com.uml2code.backend.model.classdiagram;
+package com.uml2code;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.List;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class UmlMethod {
-    private String name;
-    private String returnType;
-    private Visibility visibility;
-    private List<UmlParameter> parameters;
-    private boolean isAbstract;
-    private boolean isStatic;
+@SpringBootApplication
+public class BackendApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(BackendApplication.class, args);
+    }
 }
+    
