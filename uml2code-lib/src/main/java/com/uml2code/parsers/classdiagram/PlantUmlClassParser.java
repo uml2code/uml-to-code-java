@@ -16,7 +16,10 @@
 
 package com.uml2code.parsers.classdiagram;
 
+import com.uml2code.model.classdiagram.UmlAttribute;
 import com.uml2code.model.classdiagram.UmlClass;
+import com.uml2code.model.classdiagram.UmlMethod;
+import com.uml2code.model.classdiagram.UmlParameter;
 import com.uml2code.parsers.UmlParser;
 
 import java.io.File;
@@ -30,16 +33,53 @@ public class PlantUmlClassParser implements UmlParser{
     public List<UmlClass> parse(File file) throws Exception {
         List<String> lines = Files.readAllLines(file.toPath());
         List<UmlClass> classes = new ArrayList<>();
-
+        UmlClass umlClass = new UmlClass();
+        List<UmlMethod> umlMethods = new ArrayList<>();
+        List<UmlAttribute> umlAttributes = new ArrayList<>();
         for(String line : lines){
             line = line.trim();
            if(Helpers.isClassDefinition(line)){
-               UmlClass umlClass = new UmlClass();
                umlClass.setAbstract(Helpers.isAbstract(line));
                umlClass.setVisibility(Helpers.parseVisibility(line.charAt(0)));
                umlClass.setName(Helpers.getClassName(line));
-               classes.add(umlClass);
            }
+           if(Helpers.isMethod(line)) {
+               UmlMethod umlMethod = new UmlMethod();
+               umlMethod.setVisibility(Helpers.parseVisibility(line.charAt(0)));
+               umlMethod.setName(Helpers.getMethodName(line));
+               umlMethod.setAbstract(Helpers.isAbstract(line));
+               umlMethod.setReturnType(Helpers.getReturnType(line));
+               umlMethod.setStatic(Helpers.isStatic(line));
+
+               List<UmlParameter> umlParameters = new ArrayList<>();
+
+               Helpers.getParameters(line).forEach((type, name) -> {
+                   UmlParameter umlParameter = new UmlParameter();
+                   umlParameter.setType(type);
+                   umlParameter.setName(name);
+                   umlParameters.add(umlParameter);
+               });
+               umlMethod.setParameters(umlParameters);
+               umlMethods.add(umlMethod);
+           }
+
+            if(Helpers.isAttribute(line)){
+                UmlAttribute umlAttribute = new UmlAttribute();
+                umlAttribute.setStatic(Helpers.isStatic(line));
+                umlAttribute.setVisibility(Helpers.parseVisibility(line.charAt(0)));
+                umlAttribute.setType(Helpers.getAttributeType(line));
+                umlAttribute.setName(Helpers.getAttributeName(line));
+                umlAttribute.setDefaultValue(Helpers.getAttributeDefaultValue(line));
+                umlAttributes.add(umlAttribute);
+            }
+
+            if(Helpers.isClassEnd(line)){
+                umlClass.setMethods(umlMethods);
+                umlClass.setAttributes(umlAttributes);
+                classes.add(umlClass);
+                umlMethods.clear();
+                umlAttributes.clear();
+            }
 
         }
         return classes;

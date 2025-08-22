@@ -18,10 +18,12 @@ package com.uml2code.parsers.classdiagram;
 
 import com.uml2code.model.classdiagram.Visibility;
 
+import java.util.HashMap;
+
 public class Helpers {
 
     protected static boolean isClassDefinition(String line){
-        return line.startsWith("class ");
+        return line.contains("class ");
     }
 
     protected static String getClassName(String line){
@@ -52,6 +54,19 @@ public class Helpers {
         return name;
     }
 
+    protected static HashMap<String, String> getParameters(String line){
+        HashMap<String, String> parameters = new HashMap<>();
+        int start = line.indexOf('(');
+        int end = line.indexOf(')');
+        String insideParentheses = line.substring(start + 1, end).trim();
+        String[] parts = insideParentheses.split(",");
+        for(String part : parts){
+            String[] p = part.trim().split("\\s+");
+            parameters.put(p[0], p[1]);
+        }
+        return parameters;
+    }
+
     protected static String getReturnType(String line){
         String[] parts = line.split(" ");
         return parts[parts.length - 1];
@@ -59,6 +74,34 @@ public class Helpers {
 
     protected static boolean isStatic(String line){
         return line.contains("static");
+    }
+
+    protected static boolean isAttribute(String line){
+        return !line.contains("(") && line.split("\\s+").length >= 2;
+    }
+
+    protected static String getAttributeType(String line){
+        if("+-#~".indexOf(line.charAt(0)) != -1){
+            line = line.substring(1).trim();
+        }
+        String[] parts = line.split("\\s+");
+        return parts[0];
+    }
+
+    protected static String getAttributeName(String line){
+        if("+-#~".indexOf(line.charAt(0)) != -1){
+            line = line.substring(1).trim();
+        }
+        String[] parts = line.split("\\s+");
+        return parts[1];
+    }
+
+    protected static String getAttributeDefaultValue(String line){
+        if("+-#~".indexOf(line.charAt(0)) != -1){
+            line = line.substring(1).trim();
+        }
+        int equalsIndex = line.indexOf('=');
+        return line.substring(equalsIndex + 1).trim();
     }
 
     protected static Visibility parseVisibility(char visibility){
