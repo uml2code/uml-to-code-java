@@ -28,7 +28,7 @@ public class Helpers {
 
     protected static String getClassName(String line){
         String[] parts = line.split(" ");
-        return parts[parts.length - 1];
+        return parts[parts.length - 2];
     }
 
     protected static boolean isAbstract(String line){
@@ -68,8 +68,11 @@ public class Helpers {
     }
 
     protected static String getReturnType(String line){
-        String[] parts = line.split(" ");
-        return parts[parts.length - 1];
+        if("+-#~".indexOf(line.charAt(0)) != -1){
+            line = line.substring(1).trim();
+        }
+        String[] parts = line.split("\\s+");
+        return parts[0];
     }
 
     protected static boolean isStatic(String line){
