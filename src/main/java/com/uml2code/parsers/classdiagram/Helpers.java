@@ -28,7 +28,14 @@ public class Helpers {
 
     protected static String getClassName(String line){
         String[] parts = line.split(" ");
-        return parts[parts.length - 2];
+        int nameIndex = 0;
+        for(String part: parts){
+            if(part.equals("class")){
+                return parts[nameIndex + 1];
+            }
+            nameIndex++;
+        }
+        return null;
     }
 
     protected static boolean isAbstract(String line){
