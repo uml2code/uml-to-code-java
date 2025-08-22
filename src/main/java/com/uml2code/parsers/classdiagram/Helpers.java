@@ -35,6 +35,8 @@ public class Helpers {
         return line.contains("abstract");
     }
 
+    protected static boolean isInterface(String line) {return line.contains("interface");}
+
     protected static boolean isClassEnd(String line){
         return line.contains("}");
     }

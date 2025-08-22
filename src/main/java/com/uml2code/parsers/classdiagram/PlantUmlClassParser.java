@@ -80,6 +80,7 @@ public class PlantUmlClassParser implements UmlParser{
                 umlMethods.clear();
                 umlAttributes.clear();
             }
+            umlClass.setInterface(Helpers.isInterface(line));
 
         }
         return classes;
