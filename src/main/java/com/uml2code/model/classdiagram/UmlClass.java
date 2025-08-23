@@ -35,4 +35,5 @@ public class UmlClass {
     private boolean isAbstract;
     private UmlClass superClass;
     private boolean isInterface;
+    private List<UmlClass> interfaces;
 }
