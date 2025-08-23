@@ -38,7 +38,11 @@ public class PlantUmlClassParser implements UmlParser{
         List<UmlAttribute> umlAttributes = new ArrayList<>();
         for(String line : lines){
             line = line.trim();
-           if(Helpers.isClassDefinition(line)){
+            if (Helpers.isClassDefinition(line) || Helpers.isInterface(line)) {
+               umlClass = new UmlClass();
+               umlAttributes = new ArrayList<>();
+               umlMethods = new ArrayList<>();
+
                umlClass.setAbstract(Helpers.isAbstract(line));
                umlClass.setVisibility(Helpers.parseVisibility(line.charAt(0)));
                umlClass.setName(Helpers.getClassName(line));
@@ -73,14 +77,6 @@ public class PlantUmlClassParser implements UmlParser{
                 umlAttributes.add(umlAttribute);
             }
 
-            if(Helpers.isClassEnd(line)){
-                umlClass.setMethods(umlMethods);
-                umlClass.setAttributes(umlAttributes);
-                classes.add(umlClass);
-                umlMethods.clear();
-                umlAttributes.clear();
-            }
-
             if(Helpers.isInterface(line)){
                 umlClass.setInterface(Helpers.isInterface(line));
                 umlClass.setName(Helpers.getInterfaceName(line));
@@ -103,6 +99,37 @@ public class PlantUmlClassParser implements UmlParser{
                 if (child != null && parent != null) {
                     child.setSuperClass(parent);
                 }
+            }
+
+            if(Helpers.isImplements(line)){
+                String className = Helpers.getClassImplementName(line);
+                String interfaceName = Helpers.getInterfaceImplementName(line);
+
+                UmlClass theClass = classes.stream()
+                        .filter(c -> c.getName().equals(className))
+                        .findFirst()
+                        .orElse(null);
+
+                UmlClass theInterface = classes.stream()
+                        .filter(c -> c.getName().equals(interfaceName))
+                        .findFirst()
+                        .orElse(null);
+
+                if(theClass != null && theInterface != null){
+                    if (theClass.getInterfaces() == null) {
+                        theClass.setInterfaces(new ArrayList<>());
+                    }
+                    theClass.getInterfaces().add(theInterface);
+                }
+            }
+
+            if(Helpers.isClassEnd(line)){
+                umlClass.setMethods(umlMethods);
+                umlClass.setAttributes(umlAttributes);
+                classes.add(umlClass);
+                umlMethods.clear();
+                umlAttributes.clear();
+                umlClass = null;
             }
         }
         return classes;
