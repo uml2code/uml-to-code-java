@@ -34,5 +34,6 @@ public class UmlClass {
     private Visibility visibility;
     private boolean isAbstract;
     private UmlClass superClass;
-    private List<String> interfaces;
+    private boolean isInterface;
+    private List<UmlClass> interfaces;
 }

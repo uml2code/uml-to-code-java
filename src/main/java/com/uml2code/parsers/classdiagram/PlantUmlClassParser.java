@@ -81,6 +81,29 @@ public class PlantUmlClassParser implements UmlParser{
                 umlAttributes.clear();
             }
 
+            if(Helpers.isInterface(line)){
+                umlClass.setInterface(Helpers.isInterface(line));
+                umlClass.setName(Helpers.getInterfaceName(line));
+            }
+
+            if(Helpers.isInheritance(line)){
+                String childName = Helpers.getChildClassName(line);
+                String parentName = Helpers.getParentClassName(line);
+
+                UmlClass parent = classes.stream()
+                        .filter(c -> c.getName().equals(parentName))
+                        .findFirst()
+                        .orElse(null);
+
+                UmlClass child = classes.stream()
+                        .filter(c -> c.getName().equals(childName))
+                        .findFirst()
+                        .orElse(null);
+
+                if (child != null && parent != null) {
+                    child.setSuperClass(parent);
+                }
+            }
         }
         return classes;
     }
