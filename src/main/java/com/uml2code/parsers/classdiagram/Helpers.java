@@ -19,6 +19,7 @@ package com.uml2code.parsers.classdiagram;
 import com.uml2code.model.classdiagram.Visibility;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Helpers {
 
@@ -31,6 +32,18 @@ public class Helpers {
         int nameIndex = 0;
         for(String part: parts){
             if(part.equals("class")){
+                return parts[nameIndex + 1];
+            }
+            nameIndex++;
+        }
+        return null;
+    }
+
+    protected static String getInterfaceName(String line){
+        String[] parts = line.split(" ");
+        int nameIndex = 0;
+        for(String part: parts){
+            if(part.equals("interface")){
                 return parts[nameIndex + 1];
             }
             nameIndex++;
@@ -124,4 +137,28 @@ public class Helpers {
             default -> Visibility.PACKAGE_PRIVATE;
         };
     }
+
+    protected static boolean isInheritance(String line){
+        return line.contains("<|--");
+    }
+
+    protected static boolean isImplements(String line){
+        return line.contains("<|..");
+    }
+
+    protected static boolean isAssociation(String line){
+        return line.contains("-->");
+    }
+
+    protected static boolean isAggregation(String line){
+        return line.contains("o--");
+    }
+
+    protected static boolean isComposition(String line){
+        return line.contains("*--");
+    }
+    protected static boolean isDependency(String line){
+        return line.contains("..>");
+    }
+
 }
