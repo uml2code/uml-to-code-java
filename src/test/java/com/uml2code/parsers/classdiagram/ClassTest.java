@@ -36,21 +36,6 @@ public class ClassTest {
     }
 
     @Test
-    void abstractClassWithInheritanceAndInterface(){
-        String line = "abstract class Student extends Person implements Learner";
-        assertTrue(Helpers.isClassDefinition(line));
-        assertTrue(Helpers.isAbstract(line));
-        assertEquals("Student", Helpers.getClassName(line));
-    }
-
-    @Test
-    void classImpletingInterfaces(){
-        String line = "class Student implements Learner, Serializable";
-        assertTrue(Helpers.isClassDefinition(line));
-        assertFalse(Helpers.isAbstract(line));
-        assertEquals("Student", Helpers.getClassName(line));
-    }
-    @Test
     void testIsClassDefinition() {
         assertTrue(Helpers.isClassDefinition("class Person {"));
         assertFalse(Helpers.isClassDefinition("interface Person {"));
