@@ -98,6 +98,8 @@ public class PlantUmlClassParser implements UmlParser{
 
                 if (child != null && parent != null) {
                     child.setSuperClass(parent);
+                }else if(parent != null){
+                    umlClass.setSuperClass(parent);
                 }
             }
 
@@ -120,6 +122,12 @@ public class PlantUmlClassParser implements UmlParser{
                         theClass.setInterfaces(new ArrayList<>());
                     }
                     theClass.getInterfaces().add(theInterface);
+                    for (int i = 0; i < classes.size(); i++) {
+                        if (classes.get(i).equals(theClass)) {
+                            classes.set(i, theClass);
+                            break;
+                        }
+                    }
                 }
             }
 

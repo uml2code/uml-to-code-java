@@ -58,7 +58,7 @@ public class Helpers {
     protected static boolean isInterface(String line) {return line.contains("interface");}
 
     protected static boolean isClassEnd(String line){
-        return line.contains("}");
+        return line.trim().equals("}") || (!line.contains("{") && (isClassDefinition(line) || isInterface(line)));
     }
 
     protected static boolean isMethod(String line){
@@ -81,6 +81,9 @@ public class Helpers {
         int start = line.indexOf('(');
         int end = line.indexOf(')');
         String insideParentheses = line.substring(start + 1, end).trim();
+        if(insideParentheses.isEmpty()){
+            return parameters;
+        }
         String[] parts = insideParentheses.split(",");
         for(String part : parts){
             String[] p = part.trim().split("\\s+");
@@ -102,7 +105,7 @@ public class Helpers {
     }
 
     protected static boolean isAttribute(String line){
-        return !line.contains("(") && line.split("\\s+").length >= 2;
+        return !isMethod(line) && !isClassDefinition(line) && !isInterface(line) && line.split("\\s+").length >= 2;
     }
 
     protected static String getAttributeType(String line){
@@ -139,11 +142,11 @@ public class Helpers {
     }
 
     protected static boolean isInheritance(String line){
-        return line.contains("<|--");
+        return (line.trim().contains("<|--") || line.trim().contains("extends"));
     }
 
     protected static boolean isImplements(String line){
-        return line.contains("<|..");
+        return line.contains("<|..") || line.trim().contains("implements");
     }
 
     protected static boolean isAssociation(String line){
@@ -167,6 +170,8 @@ public class Helpers {
         for(String part: parts){
             if(part.equals("<|--")){
                 return parts[nameIndex + 1];
+            }else if(part.equals("extends")){
+                return parts[nameIndex - 1];
             }
             nameIndex++;
         }
@@ -179,6 +184,9 @@ public class Helpers {
             if(part.equals("<|--")){
                 return parts[nameIndex - 1];
             }
+            else if(part.equals("extends")){
+                return parts[nameIndex + 1];
+            }
             nameIndex++;
         }
         return null;
@@ -188,8 +196,8 @@ public class Helpers {
         String[] parts = line.split(" ");
         int nameIndex = 0;
         for(String part: parts){
-            if(part.equals("<|..")){
-                return parts[nameIndex - 1];
+            if(part.equals("<|..") || part.equals("implements")){
+                return parts[nameIndex + 1];
             }
             nameIndex++;
         }
@@ -200,8 +208,8 @@ public class Helpers {
         String[] parts = line.split(" ");
         int nameIndex = 0;
         for(String part: parts){
-            if(part.equals("<|..")){
-                return parts[nameIndex + 1];
+            if(part.equals("<|..") || part.equals("implements")){
+                return parts[nameIndex - 1];
             }
             nameIndex++;
         }
