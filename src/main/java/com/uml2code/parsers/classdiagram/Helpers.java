@@ -161,4 +161,27 @@ public class Helpers {
         return line.contains("..>");
     }
 
+    protected static String getChildClassName(String line){
+        String[] parts = line.split(" ");
+        int nameIndex = 0;
+        for(String part: parts){
+            if(part.equals("<|--")){
+                return parts[nameIndex + 1];
+            }
+            nameIndex++;
+        }
+        return null;
+    }
+    protected static String getParentClassName(String line){
+        String[] parts = line.split(" ");
+        int nameIndex = 0;
+        for(String part: parts){
+            if(part.equals("<|--")){
+                return parts[nameIndex - 1];
+            }
+            nameIndex++;
+        }
+        return null;
+    }
+
 }
