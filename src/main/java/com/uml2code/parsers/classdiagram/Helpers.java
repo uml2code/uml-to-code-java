@@ -105,23 +105,39 @@ public class Helpers {
     }
 
     protected static boolean isAttribute(String line){
-        return !isMethod(line) && !isClassDefinition(line) && !isInterface(line) && line.split("\\s+").length >= 2;
+        return !isDocumentation(line) && !isMethod(line) && !isClassDefinition(line) && !isInterface(line) && line.split("\\s+").length >= 2;
     }
 
     protected static String getAttributeType(String line){
         if("+-#~".indexOf(line.charAt(0)) != -1){
             line = line.substring(1).trim();
         }
-        String[] parts = line.split("\\s+");
-        return parts[0];
+        if (line.contains(":")) {
+            String afterColon = line.substring(line.indexOf(":") + 1).trim();
+
+            if (afterColon.contains("=")) {
+                afterColon = afterColon.substring(0, afterColon.indexOf("=")).trim();
+            }
+            return afterColon;
+        }
+
+        String[] parts = line.trim().split("\\s+");
+        if (parts.length >= 2) {
+            return parts[0];
+        }
+
+        return "";
     }
 
     protected static String getAttributeName(String line){
         if("+-#~".indexOf(line.charAt(0)) != -1){
             line = line.substring(1).trim();
         }
-        String[] parts = line.split("\\s+");
-        return parts[1];
+        if(!line.contains(":")){
+            String[] parts = line.trim().split("\\s+");
+            return parts[parts.length - 1];
+        }
+        return line.substring(0, line.indexOf(":")).trim();
     }
 
     protected static String getAttributeDefaultValue(String line){
@@ -162,6 +178,10 @@ public class Helpers {
     }
     protected static boolean isDependency(String line){
         return line.contains("..>");
+    }
+
+    protected static boolean isDocumentation(String line){
+        return ("'".indexOf(line.charAt(0)) != -1);
     }
 
     protected static String getChildClassName(String line){
