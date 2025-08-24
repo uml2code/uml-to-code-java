@@ -158,7 +158,7 @@ public class Helpers {
     }
 
     protected static boolean isInheritance(String line){
-        return (line.trim().contains("<|--") || line.trim().contains("extends"));
+        return (line.trim().contains("<|--") || line.trim().contains("extends") || line.trim().contains("--|>"));
     }
 
     protected static boolean isImplements(String line){
@@ -190,7 +190,7 @@ public class Helpers {
         for(String part: parts){
             if(part.equals("<|--")){
                 return parts[nameIndex + 1];
-            }else if(part.equals("extends")){
+            }else if(part.equals("extends") || part.equals("--|>")){
                 return parts[nameIndex - 1];
             }
             nameIndex++;
@@ -204,7 +204,7 @@ public class Helpers {
             if(part.equals("<|--")){
                 return parts[nameIndex - 1];
             }
-            else if(part.equals("extends")){
+            else if(part.equals("extends") || part.equals("--|>")){
                 return parts[nameIndex + 1];
             }
             nameIndex++;
