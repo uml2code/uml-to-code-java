@@ -37,6 +37,9 @@ public class PlantUmlClassParser implements UmlParser{
         List<UmlAttribute> umlAttributes = new ArrayList<>();
         for(String line : lines){
             line = line.trim();
+            if(line.isEmpty()){
+                continue;
+            }
             if (Helpers.isClassDefinition(line) || Helpers.isInterface(line)) {
                umlClass = new UmlClass();
                umlAttributes = new ArrayList<>();
