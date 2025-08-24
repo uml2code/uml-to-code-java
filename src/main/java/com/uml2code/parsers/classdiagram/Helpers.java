@@ -105,7 +105,13 @@ public class Helpers {
     }
 
     protected static boolean isAttribute(String line){
-        return !isDocumentation(line) && !isMethod(line) && !isClassDefinition(line) && !isInterface(line) && line.split("\\s+").length >= 2;
+        return !isClassDefinition(line)
+                && !isInterface(line)
+                && !isDocumentation(line)
+                && !isMethod(line)
+                && !isImplements(line)
+                && !isInheritance(line)
+                && line.split("\\s+").length >= 2;
     }
 
     protected static String getAttributeType(String line){
