@@ -226,8 +226,10 @@ public class Helpers {
         String[] parts = line.split(" ");
         int nameIndex = 0;
         for(String part: parts){
-            if(part.equals("<|..") || part.equals("implements") || part.equals("..|>")){
+            if(part.equals("..|>") || part.equals("implements")){
                 return parts[nameIndex + 1];
+            }else if(part.equals("<|..")){
+                return parts[nameIndex - 1];
             }
             nameIndex++;
         }
@@ -238,8 +240,10 @@ public class Helpers {
         String[] parts = line.split(" ");
         int nameIndex = 0;
         for(String part: parts){
-            if(part.equals("<|..") || part.equals("implements") || part.equals("..|>")){
+            if(part.equals("..|>") || part.equals("implements")){
                 return parts[nameIndex - 1];
+            }else if(part.equals("<|..")){
+                return parts[nameIndex + 1];
             }
             nameIndex++;
         }
