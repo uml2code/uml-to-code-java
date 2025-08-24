@@ -35,7 +35,22 @@ public class JavaUtils {
         } else {
             sb.append("class ");                             // Otherwise, define as class
         }
-        sb.append(umlClass.getName()).append(" {\n\n");     // Add class/interface name
+        sb.append(umlClass.getName());   // Add class/interface name
+        if(umlClass.getSuperClass() != null){
+            sb.append(" extends ").append(umlClass.getSuperClass().getName());
+        }
+        if(umlClass.getInterfaces() != null){
+            sb.append(" implements ");
+            int counter = 0;
+            for(UmlClass in: umlClass.getInterfaces()){
+                if(counter != 0){
+                    sb.append(", ").append(in.getName());
+                }
+                sb.append(in.getName());
+                counter++;
+            }
+        }
+        sb.append(" {\n\n");
         return sb.toString();
     }
     /**
