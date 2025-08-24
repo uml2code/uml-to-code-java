@@ -168,7 +168,7 @@ public class Helpers {
     }
 
     protected static boolean isImplements(String line){
-        return line.contains("<|..") || line.trim().contains("implements");
+        return line.trim().contains("<|..") || line.trim().contains("implements") || line.trim().contains("..|>");
     }
 
     protected static boolean isAssociation(String line){
@@ -222,7 +222,7 @@ public class Helpers {
         String[] parts = line.split(" ");
         int nameIndex = 0;
         for(String part: parts){
-            if(part.equals("<|..") || part.equals("implements")){
+            if(part.equals("<|..") || part.equals("implements") || part.equals("..|>")){
                 return parts[nameIndex + 1];
             }
             nameIndex++;
@@ -234,7 +234,7 @@ public class Helpers {
         String[] parts = line.split(" ");
         int nameIndex = 0;
         for(String part: parts){
-            if(part.equals("<|..") || part.equals("implements")){
+            if(part.equals("<|..") || part.equals("implements") || part.equals("..|>")){
                 return parts[nameIndex - 1];
             }
             nameIndex++;
