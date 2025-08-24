@@ -66,6 +66,10 @@ public class Helpers {
     }
 
     protected static String getMethodName(String line){
+        if("+-#~".indexOf(line.charAt(0)) != -1){
+            line = line.substring(1).trim();
+        }
+
         String[] parts = line.split(" ");
         String name = "";
         for(String part: parts){
