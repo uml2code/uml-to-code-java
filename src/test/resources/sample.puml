@@ -1,0 +1,9 @@
+@startuml
+class Person {
+  - String name
+  + void setName(String name)
+}
+class Student extends Person
+interface Learner
+Learner <|.. Student
+@enduml

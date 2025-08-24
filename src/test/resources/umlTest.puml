@@ -1,0 +1,35 @@
+@startuml
+
+' Classe abstraite parent
+abstract class Vehicle {
+    +startEngine(): void
+    -fuelLevel: int = 100
+}
+
+' Interface
+interface Electric {
+    +chargeBattery(): void
+}
+
+' Classe enfant qui étend Vehicle et implémente Electric
+class Car {
+    +playMusic(): void
+    -batteryLevel: int
+}
+
+Car --|> Vehicle
+Car ..|> Electric
+
+' Classe définie après son héritage
+class Motorbike {
+    +doWheelie(): void
+}
+
+Motorbike --|> Vehicle
+
+' Classe simple
+class Bicycle {
+    +pedal(): void
+}
+
+@enduml
