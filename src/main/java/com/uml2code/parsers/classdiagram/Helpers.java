@@ -58,7 +58,7 @@ public class Helpers {
     protected static boolean isInterface(String line) {return line.contains("interface");}
 
     protected static boolean isClassEnd(String line){
-        return line.contains("}");
+        return line.trim().equals("}") || (!line.contains("{") && (isClassDefinition(line) || isInterface(line)));
     }
 
     protected static boolean isMethod(String line){
@@ -66,6 +66,10 @@ public class Helpers {
     }
 
     protected static String getMethodName(String line){
+        if("+-#~".indexOf(line.charAt(0)) != -1){
+            line = line.substring(1).trim();
+        }
+
         String[] parts = line.split(" ");
         String name = "";
         for(String part: parts){
@@ -81,6 +85,9 @@ public class Helpers {
         int start = line.indexOf('(');
         int end = line.indexOf(')');
         String insideParentheses = line.substring(start + 1, end).trim();
+        if(insideParentheses.isEmpty()){
+            return parameters;
+        }
         String[] parts = insideParentheses.split(",");
         for(String part : parts){
             String[] p = part.trim().split("\\s+");
@@ -102,23 +109,45 @@ public class Helpers {
     }
 
     protected static boolean isAttribute(String line){
-        return !line.contains("(") && line.split("\\s+").length >= 2;
+        return !isClassDefinition(line)
+                && !isInterface(line)
+                && !isDocumentation(line)
+                && !isMethod(line)
+                && !isImplements(line)
+                && !isInheritance(line)
+                && line.split("\\s+").length >= 2;
     }
 
     protected static String getAttributeType(String line){
         if("+-#~".indexOf(line.charAt(0)) != -1){
             line = line.substring(1).trim();
         }
-        String[] parts = line.split("\\s+");
-        return parts[0];
+        if (line.contains(":")) {
+            String afterColon = line.substring(line.indexOf(":") + 1).trim();
+
+            if (afterColon.contains("=")) {
+                afterColon = afterColon.substring(0, afterColon.indexOf("=")).trim();
+            }
+            return afterColon;
+        }
+
+        String[] parts = line.trim().split("\\s+");
+        if (parts.length >= 2) {
+            return parts[0];
+        }
+
+        return "";
     }
 
     protected static String getAttributeName(String line){
         if("+-#~".indexOf(line.charAt(0)) != -1){
             line = line.substring(1).trim();
         }
-        String[] parts = line.split("\\s+");
-        return parts[1];
+        if(!line.contains(":")){
+            String[] parts = line.trim().split("\\s+");
+            return parts[parts.length - 1];
+        }
+        return line.substring(0, line.indexOf(":")).trim();
     }
 
     protected static String getAttributeDefaultValue(String line){
@@ -139,11 +168,11 @@ public class Helpers {
     }
 
     protected static boolean isInheritance(String line){
-        return line.contains("<|--");
+        return (line.trim().contains("<|--") || line.trim().contains("extends") || line.trim().contains("--|>"));
     }
 
     protected static boolean isImplements(String line){
-        return line.contains("<|..");
+        return line.trim().contains("<|..") || line.trim().contains("implements") || line.trim().contains("..|>");
     }
 
     protected static boolean isAssociation(String line){
@@ -161,12 +190,18 @@ public class Helpers {
         return line.contains("..>");
     }
 
+    protected static boolean isDocumentation(String line){
+        return ("'".indexOf(line.charAt(0)) != -1);
+    }
+
     protected static String getChildClassName(String line){
         String[] parts = line.split(" ");
         int nameIndex = 0;
         for(String part: parts){
             if(part.equals("<|--")){
                 return parts[nameIndex + 1];
+            }else if(part.equals("extends") || part.equals("--|>")){
+                return parts[nameIndex - 1];
             }
             nameIndex++;
         }
@@ -178,6 +213,37 @@ public class Helpers {
         for(String part: parts){
             if(part.equals("<|--")){
                 return parts[nameIndex - 1];
+            }
+            else if(part.equals("extends") || part.equals("--|>")){
+                return parts[nameIndex + 1];
+            }
+            nameIndex++;
+        }
+        return null;
+    }
+
+    protected static String getInterfaceImplementName(String line){
+        String[] parts = line.split(" ");
+        int nameIndex = 0;
+        for(String part: parts){
+            if(part.equals("..|>") || part.equals("implements")){
+                return parts[nameIndex + 1];
+            }else if(part.equals("<|..")){
+                return parts[nameIndex - 1];
+            }
+            nameIndex++;
+        }
+        return null;
+    }
+
+    protected static String getClassImplementName(String line){
+        String[] parts = line.split(" ");
+        int nameIndex = 0;
+        for(String part: parts){
+            if(part.equals("..|>") || part.equals("implements")){
+                return parts[nameIndex - 1];
+            }else if(part.equals("<|..")){
+                return parts[nameIndex + 1];
             }
             nameIndex++;
         }

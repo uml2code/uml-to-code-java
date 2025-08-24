@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlantUmlClassParser implements UmlParser{
-    /// TODO: Implement a PlantUML parser for class diagrams
     @Override
     public List<UmlClass> parse(File file) throws Exception {
         List<String> lines = Files.readAllLines(file.toPath());
@@ -38,10 +37,22 @@ public class PlantUmlClassParser implements UmlParser{
         List<UmlAttribute> umlAttributes = new ArrayList<>();
         for(String line : lines){
             line = line.trim();
-           if(Helpers.isClassDefinition(line)){
+            if(line.isEmpty()){
+                continue;
+            }
+            if (Helpers.isClassDefinition(line) || Helpers.isInterface(line)) {
+               umlClass = new UmlClass();
+               umlAttributes = new ArrayList<>();
+               umlMethods = new ArrayList<>();
+
                umlClass.setAbstract(Helpers.isAbstract(line));
                umlClass.setVisibility(Helpers.parseVisibility(line.charAt(0)));
-               umlClass.setName(Helpers.getClassName(line));
+               if (Helpers.isClassDefinition(line)) {
+                   umlClass.setName(Helpers.getClassName(line));
+               } else if (Helpers.isInterface(line)) {
+                   umlClass.setName(Helpers.getInterfaceName(line));
+                   umlClass.setInterface(true);
+               }
            }
            if(Helpers.isMethod(line)) {
                UmlMethod umlMethod = new UmlMethod();
@@ -73,18 +84,6 @@ public class PlantUmlClassParser implements UmlParser{
                 umlAttributes.add(umlAttribute);
             }
 
-            if(Helpers.isClassEnd(line)){
-                umlClass.setMethods(umlMethods);
-                umlClass.setAttributes(umlAttributes);
-                classes.add(umlClass);
-                umlMethods.clear();
-                umlAttributes.clear();
-            }
-
-            if(Helpers.isInterface(line)){
-                umlClass.setInterface(Helpers.isInterface(line));
-                umlClass.setName(Helpers.getInterfaceName(line));
-            }
 
             if(Helpers.isInheritance(line)){
                 String childName = Helpers.getChildClassName(line);
@@ -102,7 +101,44 @@ public class PlantUmlClassParser implements UmlParser{
 
                 if (child != null && parent != null) {
                     child.setSuperClass(parent);
+                }else if(parent != null){
+                    umlClass.setSuperClass(parent);
                 }
+            }
+
+            if(Helpers.isImplements(line)){
+                String className = Helpers.getClassImplementName(line);
+                String interfaceName = Helpers.getInterfaceImplementName(line);
+
+                UmlClass theClass = classes.stream()
+                        .filter(c -> c.getName().equals(className))
+                        .findFirst()
+                        .orElse(null);
+
+                UmlClass theInterface = classes.stream()
+                        .filter(c -> c.getName().equals(interfaceName))
+                        .findFirst()
+                        .orElse(null);
+
+                if(theClass != null && theInterface != null){
+                    if (theClass.getInterfaces() == null) {
+                        theClass.setInterfaces(new ArrayList<>());
+                    }
+                    theClass.getInterfaces().add(theInterface);
+                    for (int i = 0; i < classes.size(); i++) {
+                        if (classes.get(i).equals(theClass)) {
+                            classes.set(i, theClass);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if(Helpers.isClassEnd(line)){
+                umlClass.setMethods(umlMethods);
+                umlClass.setAttributes(umlAttributes);
+                classes.add(umlClass);
+                umlClass = null;
             }
         }
         return classes;
