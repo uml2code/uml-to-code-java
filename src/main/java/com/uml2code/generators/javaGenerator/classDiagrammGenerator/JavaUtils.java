@@ -46,4 +46,23 @@ public class JavaUtils {
         return sb.toString();
     }
 
+    /**
+     * Generates the class methods.
+     * @param umlClass The UML class containing methods
+     * @return The methods code as a String
+     */
+    private static String generateMethods(UmlClass umlClass) {
+        StringBuilder sb = new StringBuilder();
+        for (UmlMethod method : umlClass.getMethods()) {
+            sb.append("    ")
+                    .append(method.getVisibility())             // Visibility (public/private/protected)
+                    .append(" ")
+                    .append(method.getReturnType())            // Return type
+                    .append(" ")
+                    .append(method.getName())                  // Method name
+                    .append("() {}\n");                         // Empty method body
+        }
+        return sb.toString();
+    }
+
 }
