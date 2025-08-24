@@ -22,4 +22,28 @@ public class JavaUtils {
         sb.append(umlClass.getName()).append(" {\n\n");     // Add class/interface name
         return sb.toString();
     }
+    /**
+     * Generates the class attributes.
+     * @param umlClass The UML class containing attributes
+     * @return The attributes code as a String
+     */
+    private static String generateAttributes(UmlClass umlClass) {
+        StringBuilder sb = new StringBuilder();
+        for (UmlAttribute attr : umlClass.getAttributes()) {
+            sb.append("    ")
+                    .append(attr.getVisibility())               // Visibility (public/private/protected)
+                    .append(" ")
+                    .append(attr.getType())                     // Attribute type
+                    .append(" ")
+                    .append(attr.getName());                    // Attribute name
+
+            if (attr.getDefaultValue() != null) {
+                sb.append(" = ").append(attr.getDefaultValue()); // Add default value if present
+            }
+            sb.append(";\n");
+        }
+        sb.append("\n");
+        return sb.toString();
+    }
+
 }
