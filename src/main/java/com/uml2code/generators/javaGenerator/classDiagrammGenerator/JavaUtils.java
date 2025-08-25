@@ -19,6 +19,7 @@ package com.uml2code.generators.javaGenerator.classDiagrammGenerator;
 import com.uml2code.model.classdiagram.UmlAttribute;
 import com.uml2code.model.classdiagram.UmlClass;
 import com.uml2code.model.classdiagram.UmlMethod;
+import com.uml2code.model.classdiagram.UmlParameter;
 
 public class JavaUtils {
     /**
@@ -85,13 +86,27 @@ public class JavaUtils {
     protected static String generateMethods(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
         for (UmlMethod method : umlClass.getMethods()) {
-            sb.append("    ")
+            sb.append("\t")
                     .append(method.getVisibility())             // Visibility (public/private/protected)
                     .append(" ")
-                    .append(method.getReturnType())            // Return type
+                    .append(method.getReturnType())             // Return type
                     .append(" ")
-                    .append(method.getName())                  // Method name
-                    .append("() {}\n");                         // Empty method body
+                    .append(method.getName());                  // Method name
+            if(method.getParameters() == null){
+                sb.append("() {}\n");      // Empty method body
+            }else{
+                sb.append("(");
+                int counter = 0;
+                for(UmlParameter parameter: method.getParameters()){
+                    if(counter != 0){
+                        sb.append(", ").append(parameter.getType()).append(" ").append(parameter.getName());
+                    }
+                    sb.append(parameter.getType()).append(" ").append(parameter.getName());
+                    counter++;
+                }
+                sb.append("){\n\n\t\t}");
+            }
+
         }
         return sb.toString();
     }
