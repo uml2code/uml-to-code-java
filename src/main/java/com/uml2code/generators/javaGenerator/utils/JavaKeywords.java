@@ -57,4 +57,11 @@ public class JavaKeywords {
     protected static final String DOUBLE_WRAPPER = "Double";
     protected static final String CHARACTER_WRAPPER = "Character";
     protected static final String BOOLEAN_WRAPPER = "Boolean";
+
+    // ==============================
+    // Scope
+    // ==============================
+    protected static final String PUBLIC = "public";
+    protected static final String PRIVATE = "private";
+    protected static final String PROTECTED = "protected";
 }
