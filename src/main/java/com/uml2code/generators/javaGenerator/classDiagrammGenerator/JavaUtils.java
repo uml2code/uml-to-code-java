@@ -104,7 +104,7 @@ public class JavaUtils {
                     sb.append(parameter.getType()).append(" ").append(parameter.getName());
                     counter++;
                 }
-                sb.append("){\n\n\t\t}");
+                sb.append("){\n\n\t}");
             }
 
         }
