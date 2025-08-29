@@ -151,6 +151,7 @@ public class Helpers {
     }
 
     protected static String getAttributeDefaultValue(String line){
+        if(!line.contains("=")) return null;
         if("+-#~".indexOf(line.charAt(0)) != -1){
             line = line.substring(1).trim();
         }

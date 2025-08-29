@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package com.uml2code.generators.javaGenerator.classDiagrammGenerator;
+package com.uml2code.generators.javaGenerator.utils;
 
 import com.uml2code.model.classdiagram.UmlAttribute;
 import com.uml2code.model.classdiagram.UmlClass;
 import com.uml2code.model.classdiagram.UmlMethod;
 import com.uml2code.model.classdiagram.UmlParameter;
 
-public class JavaUtils {
+public class JavaGeneratorHelper {
     /**
      * Generates the class or interface header.
      * @param umlClass The UML class to convert
      * @return The header code as a String
      */
-    protected static String generateClassHeader(UmlClass umlClass) {
+    public static String generateClassHeader(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
         sb.append("public ");
         if (umlClass.isAbstract()) sb.append("abstract ");  // Add 'abstract' if class is abstract
@@ -59,7 +59,7 @@ public class JavaUtils {
      * @param umlClass The UML class containing attributes
      * @return The attributes code as a String
      */
-    protected static String generateAttributes(UmlClass umlClass) {
+    public static String generateAttributes(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
         for (UmlAttribute attr : umlClass.getAttributes()) {
             sb.append("    ")
@@ -83,7 +83,7 @@ public class JavaUtils {
      * @param umlClass The UML class containing methods
      * @return The methods code as a String
      */
-    protected static String generateMethods(UmlClass umlClass) {
+    public static String generateMethods(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
         for (UmlMethod method : umlClass.getMethods()) {
             sb.append("\t")
@@ -104,7 +104,7 @@ public class JavaUtils {
                     sb.append(parameter.getType()).append(" ").append(parameter.getName());
                     counter++;
                 }
-                sb.append("){\n\n\t\t}");
+                sb.append("){\n\n\t}");
             }
 
         }
