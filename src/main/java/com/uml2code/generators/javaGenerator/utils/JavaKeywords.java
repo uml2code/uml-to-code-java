@@ -59,9 +59,23 @@ public class JavaKeywords {
     protected static final String BOOLEAN_WRAPPER = "Boolean";
 
     // ==============================
-    // Scope
+    // Scope / Access Modifiers
     // ==============================
     protected static final String PUBLIC = "public";
     protected static final String PRIVATE = "private";
     protected static final String PROTECTED = "protected";
+
+    // ==============================
+    // Punctuation / Symbols
+    // ==============================
+    protected static final char DOT = '.';
+    protected static final char COMMA = ',';
+    protected static final char SEMICOLON = ';';
+    protected static final char COLON = ':';
+    protected static final char EQUALS = '=';
+    protected static final char PLUS = '+';
+    protected static final char MINUS = '-';
+    protected static final char ASTERISK = '*';
+    protected static final char SLASH = '/';
+    protected static final char PERCENT = '%';
 }
