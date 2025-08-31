@@ -16,14 +16,15 @@
 
 package com.uml2code.generators.javaGenerator.classDiagrammGenerator;
 
-import com.uml2code.generators.CodeGenerator;
 import com.uml2code.generators.javaGenerator.utils.JavaGeneratorHelper;
 import com.uml2code.model.classdiagram.UmlClass;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
-public class JavaClassGenerator implements CodeGenerator {
-    @Override
-    public String generate(UmlClass umlClass){
+public class JavaClassGenerator {
+    private static String generate(UmlClass umlClass){
         StringBuilder sb = new StringBuilder();
         sb.append(JavaGeneratorHelper.generateClassHeader(umlClass));
         sb.append(JavaGeneratorHelper.generateAttributes(umlClass));
@@ -32,9 +33,15 @@ public class JavaClassGenerator implements CodeGenerator {
 
         return sb.toString();
     }
-    /// TODO : generate java file
-    @Override
-    public void generateToFile(UmlClass umlClass, String outputDir) {
-        return;
+
+    public static void generateToJavaFile(UmlClass umlClass) {
+        try{
+            File javaFile = new File( umlClass.getName() + ".java");
+            FileWriter fileWriter = new FileWriter(javaFile);
+            fileWriter.append(generate(umlClass));
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
