@@ -72,6 +72,7 @@ public class JavaKeywords {
     protected static final char COMMA = ',';
     protected static final char SEMICOLON = ';';
     protected static final char COLON = ':';
+    protected static final char SPACE = ' ';
     protected static final char EQUALS = '=';
     protected static final char PLUS = '+';
     protected static final char MINUS = '-';
