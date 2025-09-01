@@ -80,24 +80,47 @@ public class JavaGeneratorHelper {
         return sb.toString();
     }
     /**
-     * Generates the class attributes.
-     * @param umlClass The UML class containing attributes
-     * @return The attributes code as a String
+     * Generates the Java code for all attributes of the given UML class.
+     * <p>
+     * Each attribute is converted into a field declaration following Java syntax:
+     * <ul>
+     *     <li>Visibility modifier (public, private, protected) obtained from the UML attribute</li>
+     *     <li>Data type of the attribute</li>
+     *     <li>Attribute name</li>
+     *     <li>Optional default value, if defined in the UML attribute</li>
+     *     <li>Each declaration ends with a semicolon and a newline</li>
+     * </ul>
+     * All attributes are indented with a tab character for proper formatting in the generated class.
+     * </p>
+     * <p>
+     * Example output for a UML class with two attributes:
+     * <pre>{@code
+     *     private int age;
+     *     public String name = "John";
+     * }</pre>
+     * </p>
+     *
+     * @param umlClass the UML class containing the attributes to generate; must not be {@code null}
+     * @return a {@link String} representing the Java code for all attributes of the class,
+     *         properly formatted with indentation and line breaks
      */
     public static String generateAttributes(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
         for (UmlAttribute attr : umlClass.getAttributes()) {
-            sb.append("\t")
-                    .append(attr.getVisibility())               // Visibility (public/private/protected)
-                    .append(" ")
-                    .append(attr.getType())                     // Attribute type
-                    .append(" ")
-                    .append(attr.getName());                    // Attribute name
+            sb.append(JavaKeywords.TAB)
+                    .append(attr.getVisibility())
+                    .append(JavaKeywords.SPACE)
+                    .append(attr.getType())
+                    .append(JavaKeywords.SPACE)
+                    .append(attr.getName());
 
             if (attr.getDefaultValue() != null) {
-                sb.append(" = ").append(attr.getDefaultValue()); // Add default value if present
+                sb.append(JavaKeywords.SPACE)
+                        .append(JavaKeywords.EQUALS)
+                        .append(JavaKeywords.SPACE)
+                        .append(attr.getDefaultValue());
             }
-            sb.append(";\n");
+            sb.append(JavaKeywords.SEMICOLON).append(JavaKeywords.NEWLINE);
         }
         return sb.toString();
     }
