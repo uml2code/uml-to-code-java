@@ -101,6 +101,9 @@ public class Helpers {
             line = line.substring(1).trim();
         }
         String[] parts = line.split("\\s+");
+        if(line.contains(":")){
+            return parts[1];
+        }
         return parts[0];
     }
 
