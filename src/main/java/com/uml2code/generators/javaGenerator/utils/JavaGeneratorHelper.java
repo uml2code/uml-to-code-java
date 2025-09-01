@@ -23,35 +23,60 @@ import com.uml2code.model.classdiagram.UmlParameter;
 
 public class JavaGeneratorHelper {
     /**
-     * Generates the class or interface header.
-     * @param umlClass The UML class to convert
-     * @return The header code as a String
+     * Generates the header declaration for a Java class or interface
+     * based on the provided {@link UmlClass}.
+     * <p>
+     * The generated header includes:
+     * <ul>
+     *     <li>{@code public} keyword (always present)</li>
+     *     <li>{@code abstract} keyword if the UML class is abstract</li>
+     *     <li>{@code class} or {@code interface} keyword depending on the type</li>
+     *     <li>The class or interface name</li>
+     *     <li>{@code extends} clause if a superclass is defined</li>
+     *     <li>{@code implements} clause if one or more interfaces are defined</li>
+     * </ul>
+     * The resulting header always ends with an opening curly brace
+     * followed by a newline character.
+     * </p>
+     *
+     * @param umlClass the UML class definition to convert into a Java class or interface header;
+     *                 must not be {@code null}
+     * @return the generated class or interface header as a non-null {@link String}
      */
     public static String generateClassHeader(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
-        sb.append("public ");
-        if (umlClass.isAbstract()) sb.append("abstract ");  // Add 'abstract' if class is abstract
+        sb.append(JavaKeywords.PUBLIC).append(JavaKeywords.SPACE);
+        if (umlClass.isAbstract()) sb.append(JavaKeywords.ABSTRACT).append(JavaKeywords.SPACE);
         if (umlClass.isInterface()) {
-            sb.append("interface ");                         // Define as interface if applicable
+            sb.append(JavaKeywords.INTERFACE).append(JavaKeywords.SPACE);
         } else {
-            sb.append("class ");                             // Otherwise, define as class
+            sb.append(JavaKeywords.CLASS).append(JavaKeywords.SPACE);
         }
-        sb.append(umlClass.getName());   // Add class/interface name
+        sb.append(umlClass.getName());
         if(umlClass.getSuperClass() != null){
-            sb.append(" extends ").append(umlClass.getSuperClass().getName());
+            sb.append(JavaKeywords.SPACE)
+                    .append(JavaKeywords.EXTENDS)
+                    .append(JavaKeywords.SPACE)
+                    .append(umlClass.getSuperClass().getName());
         }
         if(umlClass.getInterfaces() != null){
-            sb.append(" implements ");
+            sb.append(JavaKeywords.SPACE)
+                    .append(JavaKeywords.IMPLEMENTS)
+                    .append(JavaKeywords.SPACE);
             int counter = 0;
             for(UmlClass in: umlClass.getInterfaces()){
                 if(counter != 0){
-                    sb.append(", ").append(in.getName());
+                    sb.append(JavaKeywords.COMMA)
+                            .append(JavaKeywords.SPACE)
+                            .append(in.getName());
                 }
                 sb.append(in.getName());
                 counter++;
             }
         }
-        sb.append(" {\n\n");
+        sb.append(JavaKeywords.SPACE)
+                .append(JavaKeywords.LEFT_BRACE)
+                .append(JavaKeywords.NEWLINE);
         return sb.toString();
     }
     /**
@@ -62,7 +87,7 @@ public class JavaGeneratorHelper {
     public static String generateAttributes(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
         for (UmlAttribute attr : umlClass.getAttributes()) {
-            sb.append("    ")
+            sb.append("\t")
                     .append(attr.getVisibility())               // Visibility (public/private/protected)
                     .append(" ")
                     .append(attr.getType())                     // Attribute type
@@ -74,7 +99,6 @@ public class JavaGeneratorHelper {
             }
             sb.append(";\n");
         }
-        sb.append("\n");
         return sb.toString();
     }
 
