@@ -14,7 +14,15 @@
  * limitations under the License.
  */
 package com.uml2code.generators.javaGenerator.utils;
-
+/**
+ * A utility class containing constants for Java keywords,
+ * data types, access modifiers, symbols, and other commonly
+ * used elements for generating Java code programmatically.
+ * <p>
+ * This class is intended for use in UML-to-Java code generation
+ * tools to ensure consistency and readability when producing code.
+ * </p>
+ */
 public class JavaKeywords {
     // ==============================
     // Class-related keywords
@@ -73,10 +81,21 @@ public class JavaKeywords {
     protected static final char SEMICOLON = ';';
     protected static final char COLON = ':';
     protected static final char SPACE = ' ';
+    protected static final String NEWLINE = "\n";
     protected static final char EQUALS = '=';
     protected static final char PLUS = '+';
     protected static final char MINUS = '-';
     protected static final char ASTERISK = '*';
     protected static final char SLASH = '/';
     protected static final char PERCENT = '%';
+
+    // ==============================
+    // Brackets / Braces
+    // ==============================
+    protected static final char LEFT_BRACE = '{';
+    protected static final char RIGHT_BRACE = '}';
+    protected static final char LEFT_PAREN = '(';
+    protected static final char RIGHT_PAREN = ')';
+    protected static final char LEFT_BRACKET = '[';
+    protected static final char RIGHT_BRACKET = ']';
 }
