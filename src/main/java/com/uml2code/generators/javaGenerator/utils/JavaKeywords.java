@@ -82,6 +82,7 @@ public class JavaKeywords {
     protected static final char COLON = ':';
     protected static final char SPACE = ' ';
     protected static final String NEWLINE = "\n";
+    protected static final String TAB = "\t";
     protected static final char EQUALS = '=';
     protected static final char PLUS = '+';
     protected static final char MINUS = '-';
