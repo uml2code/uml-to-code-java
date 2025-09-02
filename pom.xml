@@ -4,17 +4,64 @@
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Project coordinates -->
     <groupId>com.uml2code</groupId>
     <artifactId>uml2code</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <!-- Project metadata -->
     <name>UML 2 Code</name>
     <description>Library to generate code from UML diagrams</description>
+    <url>https://github.com/uml2code/uml-to-code</url>
+    <inceptionYear>2025</inceptionYear>
+
+    <organization>
+        <name>uml2code</name>
+        <url>https://github.com/uml2code</url>
+    </organization>
+
+    <!-- License -->
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://opensource.org/licenses/Apache-2.0</url>
+        </license>
+    </licenses>
+
+    <!-- Main developer -->
+    <developers>
+        <developer>
+            <id>walidmadad</id>
+            <name>Walid Madad</name>
+            <email>walidmadad10@gmail.com</email>
+            <url>https://github.com/walidmadad</url>
+        </developer>
+    </developers>
+
+    <!-- Issue Management -->
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/uml2code/uml-to-code/issues</url>
+    </issueManagement>
+
+    <!-- Continuous Integration -->
+    <ciManagement>
+        <system>GitHub Actions</system>
+        <url>https://github.com/uml2code/uml-to-code/actions</url>
+    </ciManagement>
+
+    <!-- Source Control Management (SCM) -->
+    <scm>
+        <connection>scm:git:git://github.com/uml2code/uml-to-code.git</connection>
+        <developerConnection>scm:git:ssh://github.com/uml2code/uml-to-code.git</developerConnection>
+        <url>https://github.com/uml2code/uml-to-code</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -66,6 +113,16 @@
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>
+                </configuration>
+            </plugin>
+
+            <!-- Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
                 </configuration>
             </plugin>
         </plugins>
