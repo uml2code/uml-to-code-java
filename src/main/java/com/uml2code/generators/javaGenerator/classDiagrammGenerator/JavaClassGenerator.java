@@ -34,9 +34,13 @@ public class JavaClassGenerator {
         return sb.toString();
     }
 
-    public static void generateToJavaFile(UmlClass umlClass) {
+    public static void generateToJavaFile(UmlClass umlClass, String path) {
         try{
-            File javaFile = new File( umlClass.getName() + ".java");
+            File dir = new File(path);
+            if (!dir.exists() && !dir.mkdirs()) {
+                throw new RuntimeException("Impossible de créer le répertoire : " + path);
+            }
+            File javaFile = new File(dir, umlClass.getName() + ".java");
             FileWriter fileWriter = new FileWriter(javaFile);
             fileWriter.append(generate(umlClass));
             fileWriter.close();
