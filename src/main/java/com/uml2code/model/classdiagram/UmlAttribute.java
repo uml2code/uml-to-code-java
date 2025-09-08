@@ -16,19 +16,87 @@
 
 package com.uml2code.model.classdiagram;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+/**
+ * Represents an attribute of a UML class.
+ */
 public class UmlAttribute {
+
+    /** Name of the attribute */
     private String name;
+
+    /** Data type of the attribute */
     private String type;
+
+    /** Visibility of the attribute (public, private, protected, package-private) */
     private Visibility visibility;
+
+    /** Indicates if the attribute is static */
     private boolean isStatic;
+
+    /** Default value of the attribute, if any */
     private String defaultValue;
+
+    /**
+     * No-argument constructor
+     */
+    public UmlAttribute() {
+    }
+
+    /**
+     * Full-argument constructor
+     * @param name name of the attribute
+     * @param type data type of the attribute
+     * @param visibility visibility of the attribute
+     * @param isStatic whether the attribute is static
+     * @param defaultValue default value of the attribute
+     */
+    public UmlAttribute(String name, String type, Visibility visibility, boolean isStatic, String defaultValue) {
+        this.name = name;
+        this.type = type;
+        this.visibility = visibility;
+        this.isStatic = isStatic;
+        this.defaultValue = defaultValue;
+    }
+
+    // ----------------- Getters and Setters -----------------
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Visibility getVisibility() {
+        return visibility;
+    }
+
+    public void setVisibility(Visibility visibility) {
+        this.visibility = visibility;
+    }
+
+    public boolean isStatic() {
+        return isStatic;
+    }
+
+    public void setStatic(boolean isStatic) {
+        this.isStatic = isStatic;
+    }
+
+    public String getDefaultValue() {
+        return defaultValue;
+    }
+
+    public void setDefaultValue(String defaultValue) {
+        this.defaultValue = defaultValue;
+    }
 }
