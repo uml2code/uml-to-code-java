@@ -16,16 +16,48 @@
 
 package com.uml2code.model.classdiagram;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+/**
+ * Represents a parameter of a UML method.
+ */
 public class UmlParameter {
+
+    /** Name of the parameter */
     private String name;
+
+    /** Data type of the parameter */
     private String type;
+
+    /**
+     * No-argument constructor
+     */
+    public UmlParameter() {
+    }
+
+    /**
+     * Full-argument constructor
+     * @param name name of the parameter
+     * @param type data type of the parameter
+     */
+    public UmlParameter(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    // ----------------- Getters and Setters -----------------
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
