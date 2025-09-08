@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package com.uml2code.generators.javaGenerator.classDiagrammGenerator;
+package com.uml2code.generators.javaGenerator;
 
-import com.uml2code.generators.javaGenerator.utils.JavaGeneratorHelper;
 import com.uml2code.model.classdiagram.UmlClass;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class JavaClassGenerator {
+class JavaClassGenerator {
     private static String generate(UmlClass umlClass){
         StringBuilder sb = new StringBuilder();
         sb.append(JavaGeneratorHelper.generateClassHeader(umlClass));
@@ -34,7 +33,7 @@ public class JavaClassGenerator {
         return sb.toString();
     }
 
-    public static void generateToJavaFile(UmlClass umlClass, String path) {
+    protected static void generateToJavaFile(UmlClass umlClass, String path) {
         try{
             File dir = new File(path);
             if (!dir.exists() && !dir.mkdirs()) {

@@ -15,7 +15,6 @@
  */
 package com.uml2code.generators.javaGenerator;
 
-import com.uml2code.generators.javaGenerator.classDiagrammGenerator.JavaClassGenerator;
 import com.uml2code.model.classdiagram.UmlClass;
 import com.uml2code.parsers.classdiagram.PlantUmlClassParser;
 
