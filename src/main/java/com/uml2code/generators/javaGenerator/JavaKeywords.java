@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.uml2code.generators.javaGenerator.utils;
+package com.uml2code.generators.javaGenerator;
 /**
  * A utility class containing constants for Java keywords,
  * data types, access modifiers, symbols, and other commonly
@@ -23,7 +23,7 @@ package com.uml2code.generators.javaGenerator.utils;
  * tools to ensure consistency and readability when producing code.
  * </p>
  */
-public class JavaKeywords {
+class JavaKeywords {
     // ==============================
     // Class-related keywords
     // ==============================

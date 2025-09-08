@@ -19,7 +19,6 @@ package com.uml2code.parsers.classdiagram;
 import com.uml2code.model.classdiagram.Visibility;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class Helpers {
 

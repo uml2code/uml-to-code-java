@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.uml2code.generators.javaGenerator.utils;
+package com.uml2code.generators.javaGenerator;
 
 import com.uml2code.model.classdiagram.UmlAttribute;
 import com.uml2code.model.classdiagram.UmlClass;
 import com.uml2code.model.classdiagram.UmlMethod;
 import com.uml2code.model.classdiagram.UmlParameter;
 
-public class JavaGeneratorHelper {
+class JavaGeneratorHelper {
     /**
      * Generates the header declaration for a Java class or interface
      * based on the provided {@link UmlClass}.
@@ -43,7 +43,7 @@ public class JavaGeneratorHelper {
      *                 must not be {@code null}
      * @return the generated class or interface header as a non-null {@link String}
      */
-    public static String generateClassHeader(UmlClass umlClass) {
+    protected static String generateClassHeader(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
         sb.append(JavaKeywords.PUBLIC).append(JavaKeywords.SPACE);
         if (umlClass.isAbstract()) sb.append(JavaKeywords.ABSTRACT).append(JavaKeywords.SPACE);
@@ -104,7 +104,7 @@ public class JavaGeneratorHelper {
      * @return a {@link String} representing the Java code for all attributes of the class,
      *         properly formatted with indentation and line breaks
      */
-    public static String generateAttributes(UmlClass umlClass) {
+    protected static String generateAttributes(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
         for (UmlAttribute attr : umlClass.getAttributes()) {
             sb.append(JavaKeywords.TAB)
@@ -130,7 +130,7 @@ public class JavaGeneratorHelper {
      * @param umlClass The UML class containing methods
      * @return The methods code as a String
      */
-    public static String generateMethods(UmlClass umlClass) {
+    protected static String generateMethods(UmlClass umlClass) {
         StringBuilder sb = new StringBuilder();
         for (UmlMethod method : umlClass.getMethods()) {
             sb.append("\t")
