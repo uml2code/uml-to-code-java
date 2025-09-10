@@ -1,7 +1,8 @@
-# UML2Code Library
+# UML2Code Java Library
 
-**UML2Code** is an open-source library that transforms UML diagrams into code skeletons.  
-It is designed to be educational and lightweight, helping students and developers quickly move from design to implementation.
+**UML2Code** is an open-source library that converts UML diagrams into ready-to-use code skeletons.  
+Designed for development teams and software architects, it accelerates the transition from design to implementation, ensures consistency across projects, and reduces boilerplate coding.  
+With its lightweight and extensible architecture, UML2Code adapts to different workflows and programming languages.
 
 ---
 
@@ -14,7 +15,6 @@ It is designed to be educational and lightweight, helping students and developer
 - Extensible architecture:
   - Add your own parsers for other UML notations.
   - Add new code generators for other languages.
-
 ---
 
 ## Project Structure
@@ -24,11 +24,22 @@ It is designed to be educational and lightweight, helping students and developer
 │ │   └── main/
 │ │       ├── java/
 │ │       │   └── com/uml2code/
+│ │       │       ├── generators/    
+│ │       │       │   ├── CodeGenerator.java
+│ │       │       │   └── javaGenerator/       
+│ │       │       │       ├── JavaClassGenearator.java
+│ │       │       │       ├── JavaGenearator.java
+│ │       │       │       ├── JavaGenearatorHelper.java
+│ │       │       │       └── JavaKeywords.java
 │ │       │       ├── model/                 
 │ │       │       │   ├── classdiagram/  
+│ │       │       │   │   ├── UmlAttribute.java
+│ │       │       │   │   ├── UmlClass.java
+│ │       │       │   │   ├── UmlMethod.java
+│ │       │       │   │   ├── UmlParameter.java
+│ │       │       │   │   └── Visibility.java
 │ │       │       │   ├── sequence/        
 │ │       │       │   └── usecase/        
-│ │       │       │
 │ │       │       ├── parsers/              
 │ │       │       │   ├── UmlParser.java
 │ │       │       │   ├── classdiagram/
@@ -36,22 +47,9 @@ It is designed to be educational and lightweight, helping students and developer
 │ │       │       │   │   └── Helpers.java
 │ │       │       │   ├── sequence/   
 │ │       │       │   └── usecase/          
-│ │       │       │
-│ │       │       ├── generators/    
-│ │       │       │   ├── CodeGenerator.java
-│ │       │       │   ├── java/       
-│ │       │       │   │   └── JavaClassGenerator.java
-│ │       │       │   ├── csharp/      
-│ │       │       │   │   └── CSharpClassGenerator.java
-│ │       │       │   └── python/      
-│ │       │       │       └── PythonClassGenerator.java
-│ │       │       │
-│ │       │       └── utils/               
-│ │       │           └── FileUtils.java
-│ │       │
+│ │       │       └── module-info.java
 │ │       └── resources/
 │ │           └── templates/      
-│ │
 │ └── src/test/
 │     └── java/
 │         └── com/uml2code/
