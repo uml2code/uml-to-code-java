@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!-- Project coordinates -->
-    <groupId>com.uml2code</groupId>
+    <groupId>io.github.uml2code</groupId>
     <artifactId>uml2code</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
