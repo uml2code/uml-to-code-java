@@ -1,74 +1,51 @@
+
 # UML2Code Java Library
 
+[![Build](https://img.shields.io/github/actions/workflow/status/uml2code/uml-to-code-java/maven.yml)](https://github.com/uml2code/uml-to-code-java/actions/workflows/maven.yml)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/uml2code/uml-to-code-java?style=social)](https://github.com/uml2code/uml-to-code-java/stargazers)
+[![Version](https://img.shields.io/maven-central/v/io.github.uml2code/uml2code)](https://search.maven.org/artifact/io.github.uml2code/uml2code)
+[![Java](https://img.shields.io/badge/Java-17-brightgreen)](https://www.oracle.com/java/)
+[![Maven](https://img.shields.io/badge/Maven-3.9.1-blue)](https://maven.apache.org/)
+[![Last Commit](https://img.shields.io/github/last-commit/uml2code/uml-to-code-java)](https://github.com/uml2code/uml-to-code-java/commits)
+
+
 **UML2Code** is an open-source library that converts UML diagrams into ready-to-use code skeletons.  
-Designed for development teams and software architects, it accelerates the transition from design to implementation, ensures consistency across projects, and reduces boilerplate coding.  
-With its lightweight and extensible architecture, UML2Code adapts to different workflows and programming languages.
+This README serves as the central hub to access all documentation and resources for the project.
+
+---
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [User Documentation](#user-documentation)
+- [Contribution Guide](#contribution-guide)
+- [License](#license)
 
 ---
 
-## Features
-- Parse **UML Class Diagrams** (PlantUML, XMI in progress).
-- Generate **code skeletons** in multiple languages:
-  - Java
-  - C#
-  - Python
-- Extensible architecture:
-  - Add your own parsers for other UML notations.
-  - Add new code generators for other languages.
----
+## Project Overview
 
-## Project Structure
-```
-├──uml2code-lib/
-│ ├── src/
-│ │   └── main/
-│ │       ├── java/
-│ │       │   └── com/uml2code/
-│ │       │       ├── generators/    
-│ │       │       │   ├── CodeGenerator.java
-│ │       │       │   └── javaGenerator/       
-│ │       │       │       ├── JavaClassGenearator.java
-│ │       │       │       ├── JavaGenearator.java
-│ │       │       │       ├── JavaGenearatorHelper.java
-│ │       │       │       └── JavaKeywords.java
-│ │       │       ├── model/                 
-│ │       │       │   ├── classdiagram/  
-│ │       │       │   │   ├── UmlAttribute.java
-│ │       │       │   │   ├── UmlClass.java
-│ │       │       │   │   ├── UmlMethod.java
-│ │       │       │   │   ├── UmlParameter.java
-│ │       │       │   │   └── Visibility.java
-│ │       │       │   ├── sequence/        
-│ │       │       │   └── usecase/        
-│ │       │       ├── parsers/              
-│ │       │       │   ├── UmlParser.java
-│ │       │       │   ├── classdiagram/
-│ │       │       │   │   ├── PlantUmlClassParser.java
-│ │       │       │   │   └── Helpers.java
-│ │       │       │   ├── sequence/   
-│ │       │       │   └── usecase/          
-│ │       │       └── module-info.java
-│ │       └── resources/
-│ │           └── templates/      
-│ └── src/test/
-│     └── java/
-│         └── com/uml2code/
-│             ├── parsers/  
-│             |   ├── classdiagram/
-│             |   ├── sequence/  
-│             └── generators/  
-├──examples/       # Example UML diagrams and generated code
-├──docs/           # Documentation and tutorials
-```
+UML2Code accelerates the transition from UML design to implementation.
+It supports PlantUML class diagrams (XMI support in progress) and can generate code in Java, C#, and Python.
+The library is modular, lightweight, and extensible.
 
 ---
 
-## Contributing
-Contributions are welcome!
-You can help by:
-- Adding new UML parsers
-- Adding new code generators
-- Improving documentation
+## User Documentation
+
+All documentation for using UML2Code is in the `docs/` folder:
+
+- [Getting Started](docs/getting-started.md)
+- [API Reference](docs/api-reference.md)
+
+---
+
+## Contribution Guide
+
+Guidelines for contributing to UML2Code:
+
+- [How to Contribute](docs/how-to-contribute.md) workflow, coding guidelines, testing
+- [Code of Conduct](docs/code-of-conduct.md) 
 
 ---
 
