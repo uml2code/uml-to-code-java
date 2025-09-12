@@ -45,7 +45,7 @@ All documentation for using UML2Code is in the `docs/` folder:
 Guidelines for contributing to UML2Code:
 
 - [How to Contribute](docs/how-to-contribute.md) workflow, coding guidelines, testing
-- [Code of Conduct](docs/code-of-conduct.md) 
+- [Code of Conduct](CODE_OF_CONDUCT.md) 
 
 ---
 
