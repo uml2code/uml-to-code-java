@@ -41,3 +41,28 @@ public class Main {
 ```
 - Default path:`./generated`
 - Supported diagrams: PlantUML class diagrams (XMI support in progress)
+
+- Example
+
+UML Diagram (examples/MyDiagram.puml):
+```text
+@startuml
+class User {
+    - String name
+    - int age
+    + getName()
+    + getAge()
+}
+@enduml
+```
+
+Generated Java code (generated/User.java):
+```java
+public class User {
+    private String name;
+    private int age;
+
+    public String getName() { return name; }
+    public int getAge() { return age; }
+}
+```
