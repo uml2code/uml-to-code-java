@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.uml2code.model.classdiagram;
+package com.uml2code.classDiagram;
 
 /**
  * Represents an attribute of a UML class.
  */
-public class UmlAttribute {
+class UmlAttribute {
 
     /** Name of the attribute */
     private String name;

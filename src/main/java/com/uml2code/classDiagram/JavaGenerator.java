@@ -13,10 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.uml2code.generators.javaGenerator;
-
-import com.uml2code.model.classdiagram.UmlClass;
-import com.uml2code.parsers.classdiagram.PlantUmlClassParser;
+package com.uml2code.classDiagram;
 
 import java.io.File;
 import java.util.List;

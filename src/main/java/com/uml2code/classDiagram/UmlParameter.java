@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.uml2code.model.classdiagram;
+package com.uml2code.classDiagram;
 
 /**
  * Represents a parameter of a UML method.
  */
-public class UmlParameter {
+class UmlParameter {
 
     /** Name of the parameter */
     private String name;

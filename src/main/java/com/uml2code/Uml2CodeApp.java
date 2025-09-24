@@ -17,9 +17,16 @@
 package com.uml2code;
 
 
+import com.uml2code.classDiagram.JavaGenerator;
+
+import java.io.File;
+import java.net.URL;
+
 public class Uml2CodeApp {
-    public static void main(String[] args) {
-        System.out.println("UML2Code Library Ready");
+    public static void main(String[] args) throws Exception {
+        URL resource = Uml2CodeApp.class.getClassLoader().getResource("umlTest.puml");
+        File file = new File(resource.toURI());
+        JavaGenerator.classDiagramToMultipleFiles(file);
     }
 }
     

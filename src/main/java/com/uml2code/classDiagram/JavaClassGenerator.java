@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package com.uml2code.generators.javaGenerator;
-
-import com.uml2code.model.classdiagram.UmlClass;
+package com.uml2code.classDiagram;
 
 import java.io.File;
 import java.io.FileWriter;

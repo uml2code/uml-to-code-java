@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.uml2code.model.classdiagram;
+package com.uml2code.classDiagram;
 
 import java.util.List;
 
 /**
  * Represents a method in a UML class.
  */
-public class UmlMethod {
+class UmlMethod {
 
     /** Name of the method */
     private String name;
