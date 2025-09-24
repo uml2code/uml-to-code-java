@@ -14,21 +14,14 @@
  * limitations under the License.
  */
 
-package com.uml2code.parsers.classdiagram;
-
-import com.uml2code.model.classdiagram.UmlAttribute;
-import com.uml2code.model.classdiagram.UmlClass;
-import com.uml2code.model.classdiagram.UmlMethod;
-import com.uml2code.model.classdiagram.UmlParameter;
-import com.uml2code.parsers.UmlParser;
+package com.uml2code.classDiagram;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlantUmlClassParser implements UmlParser{
-    @Override
+class PlantUmlClassParser{
     public List<UmlClass> parse(File file) throws Exception {
         List<String> lines = Files.readAllLines(file.toPath());
         List<UmlClass> classes = new ArrayList<>();

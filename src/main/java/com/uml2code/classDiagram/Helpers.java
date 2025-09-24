@@ -14,13 +14,11 @@
  * limitations under the License.
  */
 
-package com.uml2code.parsers.classdiagram;
-
-import com.uml2code.model.classdiagram.Visibility;
+package com.uml2code.classDiagram;
 
 import java.util.HashMap;
 
-public class Helpers {
+class Helpers {
 
     protected static boolean isClassDefinition(String line){
         return line.contains("class ");

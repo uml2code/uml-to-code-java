@@ -14,12 +14,22 @@
  * limitations under the License.
  */
 
-package com.uml2code.parsers;
+package com.uml2code.classDiagram;
 
-import com.uml2code.model.classdiagram.UmlClass;
-import java.util.List;
-import java.io.File;
+enum Visibility {
+    PUBLIC("public"),
+    PRIVATE("private"),
+    PROTECTED("protected"),
+    PACKAGE_PRIVATE("");
 
-public interface UmlParser{
-    List<UmlClass> parse(File file) throws Exception;
+    private final String keyword;
+
+    Visibility(String keyword){
+        this.keyword = keyword;
+    }
+
+    @Override
+    public String toString(){
+        return keyword;
+    }
 }

@@ -1,8 +1,5 @@
-package com.uml2code.parsers.classdiagram;
+package com.uml2code.classDiagram;
 
-import com.uml2code.model.classdiagram.UmlAttribute;
-import com.uml2code.model.classdiagram.UmlClass;
-import com.uml2code.model.classdiagram.UmlMethod;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
